@@ -11,11 +11,18 @@ def fact(n):
 	"""
 	n2 = n
 
+	if n < 0:
+		raise ValueError("Le nombre ne peut pas être négatif.")
+	
+	if n == 0:
+		return 1
+	
 	while n > 1:
 		n2 = n2*(n-1)
 		n = n-1
 	return n2
-		
+	
+	
 
 def roots(a, b, c):
 	"""Computes the roots of the ax^2 + bx + x = 0 polynomial.
@@ -32,7 +39,7 @@ def roots(a, b, c):
 		return (root1, root2)
 
 	if delta < 0:
-		return ()
+		raise ValueError("Le delta n'admet aucune solution.")
 	
 	if delta == 0:
 		root = (- b)/(2*a)
@@ -51,6 +58,10 @@ def integrate(function, lower, upper):
 		you'll probably need the 'eval' function to evaluate the function
 		to integrate given as a string.
 	"""	
+
+	if lower > upper:
+		raise ValueError("La borne du dessous doit être égale ou plus petite que la borne du dessus.")
+
 	def f(x):
 		return eval(function, {"x": x, "np": np})
 	
